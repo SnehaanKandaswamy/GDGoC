@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import '../services/api_service.dart';
 import '../models/place.dart';
@@ -34,7 +35,27 @@ class _HomeScreenState extends State<HomeScreen> {
             return Center(child: Text("Error: ${snapshot.error}"));
           }
 
-          final places = snapshot.data!;
+          List<Place> places = snapshot.data ?? [];
+          final random = Random();
+
+          // Assign random crowdScore if missing
+          places = places.map((p) {
+            return Place(
+              name: p.name,
+              lat: p.lat,
+              lng: p.lng,
+              story: p.story,
+              vicinity: p.vicinity,
+              crowdScore: p.crowdScore == 0
+                  ? 10 + random.nextInt(90)
+                  : p.crowdScore,
+            );
+          }).toList();
+
+          if (places.isEmpty) {
+            return const Center(child: Text("No places found."));
+          }
+
           return ListView.builder(
             itemCount: places.length,
             itemBuilder: (context, index) {

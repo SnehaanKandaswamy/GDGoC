@@ -7,7 +7,7 @@ from datetime import datetime
 
 app = FastAPI()
 
-GOOGLE_PLACES_KEY = "YOUR_GOOGLE_KEY"
+GOOGLE_PLACES_KEY = "AIzaSyAISIZ5iyqaGHofZsQQvRtCYpkuZa3Qx0Y"
 
 # ------------------ MODELS ------------------
 

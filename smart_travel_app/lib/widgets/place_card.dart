@@ -12,7 +12,7 @@ class PlaceCard extends StatelessWidget {
       margin: const EdgeInsets.all(12),
       child: ListTile(
         title: Text(place.name),
-        subtitle: Text(place.story),
+        subtitle: Text(place.story ?? ''),
         trailing: Text("Crowd: ${place.crowdScore}"),
       ),
     );
